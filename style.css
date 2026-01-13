@@ -1,0 +1,98 @@
+:root{
+  --bg:#0b1020;
+  --card: rgba(255,255,255,.06);
+  --stroke: rgba(255,255,255,.12);
+  --txt:#eaf0ff;
+  --muted:#aab4d6;
+  --shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+
+[data-theme="light"]{
+  --bg:#f6f7fb;
+  --card: rgba(10,20,40,.06);
+  --stroke: rgba(10,20,40,.12);
+  --txt:#0b1220;
+  --muted:#52607a;
+  --shadow: 0 18px 50px rgba(0,0,0,.14);
+}
+
+body{
+  background: radial-gradient(circle at 20% 10%, rgba(255,170,60,.18), transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(90,120,255,.18), transparent 45%),
+              var(--bg);
+  color: var(--txt);
+}
+
+.glass{
+  background: rgba(0,0,0,.25) !important;
+  backdrop-filter: blur(14px);
+}
+[data-theme="light"] .glass{ background: rgba(255,255,255,.65) !important; }
+
+.shadow-soft{ background: var(--card); border: 1px solid var(--stroke); border-radius: 18px; }
+
+.divider{ height:1px; background: var(--stroke); }
+
+.hint{ opacity:.75; }
+
+.list-group-item{
+  background: transparent !important;
+  color: var(--txt) !important;
+  border-color: var(--stroke) !important;
+}
+
+/* ===== Ripple ===== */
+.ripple{ position: relative; overflow:hidden; }
+.ripple__wave{
+  position:absolute;
+  border-radius:999px;
+  transform: scale(0);
+  animation: ripple .6s ease-out;
+  background: rgba(255,255,255,.35);
+  pointer-events:none;
+}
+@keyframes ripple{ to{ transform: scale(12); opacity:0; } }
+
+/* ===== Magnetic ===== */
+.magnetic{ transition: transform .12s ease; }
+
+/* ===== Modal ===== */
+.modalx{
+  position: fixed; inset:0;
+  display:grid; place-items:center;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+.modalx__card{
+  width: min(520px, 92vw);
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--card);
+  border:1px solid var(--stroke);
+}
+
+/* ===== Toast ===== */
+.toastx{
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%) translateY(14px);
+  opacity: 0;
+  pointer-events:none;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.65);
+  border: 1px solid var(--stroke);
+  transition: .25s ease;
+  z-index: 9999;
+}
+.toastx--show{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== Reduce motion ===== */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
